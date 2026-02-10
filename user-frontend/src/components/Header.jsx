@@ -24,8 +24,11 @@ export default function Header() {
 
   return (
     <header className="header">
-      <div className="brand" onClick={() => navigate("/")}
-        role="button" tabIndex={0}
+      <div
+        className="brand"
+        onClick={() => navigate("/")}
+        role="button"
+        tabIndex={0}
         onKeyDown={(event) => event.key === "Enter" && navigate("/")}
       >
         {branding.logoUrl ? (
@@ -33,25 +36,32 @@ export default function Header() {
         ) : (
           <div className="brand-mark">E</div>
         )}
-        <span>{branding.storeName}</span>
+        <div className="brand-text">
+          <span className="brand-name">{branding.storeName}</span>
+          <span className="brand-tagline">Premium home & lifestyle store</span>
+        </div>
       </div>
       <div className="header-actions">
         <button className="theme-toggle" onClick={toggleTheme}>
           {theme === "light" ? "Dark" : "Light"} Mode
         </button>
-        {user ? (
-          <>
-            <Link to="/cart">My Cart</Link>
-            <Link to="/profile">Profile</Link>
-            <button className="ghost" onClick={logout}>Logout</button>
-          </>
-        ) : (
-          <>
-            <Link to="/login">Login</Link>
-            <Link to="/signup">Sign up</Link>
-            <Link to="/cart">My Cart</Link>
-          </>
-        )}
+        <div className="header-links">
+          {user ? (
+            <>
+              <Link to="/cart">My Cart</Link>
+              <Link to="/profile">Profile</Link>
+              <button className="ghost" onClick={logout}>
+                Logout
+              </button>
+            </>
+          ) : (
+            <>
+              <Link to="/login">Login</Link>
+              <Link to="/signup">Sign up</Link>
+              <Link to="/cart">My Cart</Link>
+            </>
+          )}
+        </div>
       </div>
     </header>
   );
